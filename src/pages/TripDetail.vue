@@ -4,6 +4,7 @@
     <div class="toolbar">
       <el-button type="primary" @click="router.push('/spots')">添加景点</el-button>
       <el-button @click="router.push('/planner/' + trip.id + '/1')">编排第 1 天</el-button>
+      <el-button @click="router.push('/prep/' + trip.id)">准备清单</el-button>
       <el-button @click="router.push('/share')">分享预览</el-button>
     </div>
     <section class="grid">

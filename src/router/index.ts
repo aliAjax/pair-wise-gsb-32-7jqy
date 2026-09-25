@@ -3,6 +3,7 @@ import Trips from '../pages/Trips.vue';
 import TripDetail from '../pages/TripDetail.vue';
 import Spots from '../pages/Spots.vue';
 import Planner from '../pages/Planner.vue';
+import Prep from '../pages/Prep.vue';
 import Share from '../pages/Share.vue';
 import { installGuards } from './guards';
 
@@ -14,6 +15,7 @@ const router = createRouter({
     { path: '/trip/:id', component: TripDetail },
     { path: '/spots', component: Spots },
     { path: '/planner/:tripId/:dayIndex', component: Planner },
+    { path: '/prep/:tripId', component: Prep },
     { path: '/share', component: Share },
   ],
 });
