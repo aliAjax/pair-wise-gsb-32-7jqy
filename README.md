@@ -17,7 +17,8 @@ TripWeaver 是一款纯前端旅行规划应用，支持创建旅行、探索景
 - 行程详情：查看每日行程、预算图表和共享时间线。
 - 景点探索：按 SpotCategory 搜索和筛选，收藏并加入行程。
 - 行程编排：SortableJS 拖拽排序，实时影响预算计算。
-- 分享预览：生成可复制的行程文本。
+- 出发准备清单：按旅行记录事项、负责人和截止时间；办结时保存处理记录；负责人不在同行人名单内的事项自动进入待指派区并写明原因；未完成置顶，逾期优先。
+- 分享预览：生成可复制的行程文本（含同一份准备清单结果）。
 
 ## 技术栈
 
@@ -51,6 +52,12 @@ src/
 ## 数据持久化
 
 本地数据通过 `utils/storage.ts` 统一写入 localStorage，并保留 Dexie 数据库对象用于后续 IndexedDB 扩展。版本键来自 `constants/storageVersion.ts`。
+
+准备清单的数据、排序与展示分层：
+
+- 数据：`models/checklist.ts`、`api/checklistApi.ts`（localStorage 持久化，关浏览器再打开可继续）、`stores/checklistStore.ts`（增改/办结/重开/删除）。
+- 排序与整理：`utils/checklist.ts` 纯函数（未完成置顶、逾期优先、待指派分区、统计、分享文本），`hooks/useChecklistView.ts` 供清单页和分享页读取同一份结果。
+- 展示：`components/common/ChecklistPanel.vue`（编辑模式）与只读复用、`ChecklistItemRow.vue`、`pages/Checklist.vue`；`pages/Share.vue` 以只读模式渲染同一面板。
 
 ## 环境变量
 
